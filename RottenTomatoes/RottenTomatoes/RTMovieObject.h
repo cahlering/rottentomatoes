@@ -12,9 +12,9 @@
 @interface RTMovieObject : MUJSONResponseObject
 
 @property (nonatomic) NSInteger *id;
-@property (nonatomic, weak) NSString *title;
-@property (nonatomic, weak) NSString *description;
-@property (nonatomic, weak) NSArray *cast;
-@property (nonatomic, weak) NSArray *posters;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSArray *cast;
+@property (nonatomic, strong) NSDictionary *posters;
 
 @end

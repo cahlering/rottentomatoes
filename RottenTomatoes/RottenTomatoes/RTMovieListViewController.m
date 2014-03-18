@@ -14,11 +14,15 @@
 #import "RTMovieDetailViewCell.h"
 #import "RTMovieObject.h"
 #import "RTMovieResponse.h"
+#import "MBProgressHUD.h"
+#import "MBAlertView.h"
+
 
 @interface RTMovieListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) NSArray *movies;
+@property (strong, nonatomic) RTMovieResponse *movieResponse;
+@property (weak, nonatomic) MBProgressHUD *spinner;
 
 @end
 
@@ -38,7 +42,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.tableView.rowHeight = 80;
     self.tableView.dataSource = self;
+    UINib *rtMovieCellNib = [UINib nibWithNibName:@"RTMovieDetailViewCell" bundle:nil];
+    [self.tableView registerNib:rtMovieCellNib forCellReuseIdentifier: @"RTMovieDetailViewCell"];
+    
+    // refresh on pull
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [self.tableView addSubview:refreshControl];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +63,10 @@
 
 - (void) getMovies
 {
+    self.spinner = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.spinner.mode = MBProgressHUDModeAnnularDeterminate;
+    self.spinner.labelText = @"retrieving movies...";
+    
     self.title = @"Top DVDs";
     
     NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=qqjjvmep568xkmjkrqd42bsa";
@@ -61,37 +79,53 @@
     
     afRequestOperation.responseSerializer = movieSerializer;
     [afRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.spinner hide:TRUE];
         RTMovieResponse *response = (RTMovieResponse *)responseObject;
-        self.movies = response.movies;
+        self.movieResponse = response;
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Networking Error"
-                                                         message:@"Replace this error"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"Dismiss"
-                                               otherButtonTitles: nil ];
-        [alert show];
+        [self.spinner hide:TRUE];
+        MBAlertView* alert = [MBAlertView alertWithBody:@"Error Contacting Rotten Tomatoes" cancelTitle:nil cancelBlock:nil];
+        [alert addButtonWithText:@"Dismiss" type:MBAlertViewItemTypePositive block:^{}];
+        [alert addToDisplayQueue];
     }];
     
     [afRequestOperation start];
 }
 
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self getMovies];
+    [refreshControl endRefreshing];
+}
+
 #pragma mark - UITableView data source methods
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.movies count];
+    return self.movieResponse.movies.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 140;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RTMovieDetailViewCell *movieCell = [[RTMovieDetailViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    RTMovieDetailViewCell *movieCell = [tableView dequeueReusableCellWithIdentifier:@"RTMovieDetailViewCell" forIndexPath:indexPath];
     
-    RTMovieObject *movie = self.movies[indexPath.row];
-    movieCell.textLabel.text = movie.title;
-    
+    NSInteger rowIndex = indexPath.row;
+    RTMovieObject *lm = self.movieResponse.movies[rowIndex];
+    [movieCell setMovie: lm];
     return movieCell;
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//    RTMovieObject *movie = self.movieResponse.movies[indexPath.row];
+//    cell.textLabel.text = movie.title;
+//    return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RTMovieDetailViewController *movieDetailControlller = [[RTMovieDetailViewController alloc] init];
+    movieDetailControlller.movie = self.movieResponse.movies[indexPath.row];
+    [self.navigationController pushViewController:movieDetailControlller animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 @end

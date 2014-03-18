@@ -27,6 +27,7 @@
 		95DDFE7118D8CE380023B9F3 /* RTMovieDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DDFE6F18D8CE380023B9F3 /* RTMovieDetailViewCell.m */; };
 		95DDFE7218D8CE380023B9F3 /* RTMovieDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DDFE7018D8CE380023B9F3 /* RTMovieDetailViewCell.xib */; };
 		95DDFE7A18D8D90E0023B9F3 /* RTMovieResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DDFE7918D8D90E0023B9F3 /* RTMovieResponse.m */; };
+		95DDFE7C18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DDFE7B18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		95DDFE7018D8CE380023B9F3 /* RTMovieDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTMovieDetailViewCell.xib; sourceTree = "<group>"; };
 		95DDFE7818D8D90E0023B9F3 /* RTMovieResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMovieResponse.h; sourceTree = "<group>"; };
 		95DDFE7918D8D90E0023B9F3 /* RTMovieResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMovieResponse.m; sourceTree = "<group>"; };
+		95DDFE7B18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTMovieDetailViewController.xib; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				95DDFE5F18D89A520023B9F3 /* RTMovieListViewController.xib */,
 				95DDFE6B18D8B6B80023B9F3 /* RTMovieDetailViewController.h */,
 				95DDFE6C18D8B6B80023B9F3 /* RTMovieDetailViewController.m */,
+				95DDFE7B18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			files = (
 				95DDFE6118D89A520023B9F3 /* RTMovieListViewController.xib in Resources */,
 				95B6380518D72F520090D9DD /* InfoPlist.strings in Resources */,
+				95DDFE7C18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib in Resources */,
 				95DDFE7218D8CE380023B9F3 /* RTMovieDetailViewCell.xib in Resources */,
 				95B6380D18D72F520090D9DD /* Images.xcassets in Resources */,
 			);

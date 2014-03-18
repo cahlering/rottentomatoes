@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTMovieListViewController : UITableViewController
+@interface RTMovieListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

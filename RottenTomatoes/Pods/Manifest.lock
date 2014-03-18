@@ -20,13 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.2.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - MBAlertView (1.1.0)
+  - MBProgressHUD (0.8)
 
 DEPENDENCIES:
   - AFNetworking (= 2.2)
   - AFNetworking-MUJSONResponseSerializer
+  - MBAlertView (~> 1.1.0)
+  - MBProgressHUD (~> 0.5)
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   AFNetworking-MUJSONResponseSerializer: a4f85eeb2de822b5e011e59fc1ac376a24e108f8
+  MBAlertView: b966a77a32f2c366e1285ad95998c5187c1dc2ae
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
 
 COCOAPODS: 0.29.0

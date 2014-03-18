@@ -10,6 +10,6 @@
 
 @interface RTMovieResponse : MUJSONResponseObject
 
-@property (weak, nonatomic) NSArray *movies;
+@property (strong, nonatomic) NSArray *movies;
 
 @end

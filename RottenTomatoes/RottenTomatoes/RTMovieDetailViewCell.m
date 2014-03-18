@@ -7,6 +7,15 @@
 //
 
 #import "RTMovieDetailViewCell.h"
+#import "UIImageView+AFNetworking.h"
+
+@interface RTMovieDetailViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+
+@end
 
 @implementation RTMovieDetailViewCell
 
@@ -22,4 +31,21 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - public methods
+
+-(void) setMovie:(RTMovieObject *)movie {
+    _movie = movie;
+    
+    self.titleLabel.text = self.movie.title;
+    self.synopsisLabel.text = self.movie.description;
+    NSURL *thumbNailUrl = [NSURL  URLWithString:[self.movie.posters valueForKey:@"thumbnail"]];
+    NSURLRequest *thumbnailRequest = [NSURLRequest requestWithURL:thumbNailUrl];
+    UIImage *placeHolderImage = [UIImage imageNamed:@"loading"];
+    
+    [self.posterView setImageWithURLRequest:thumbnailRequest placeholderImage:placeHolderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        self.posterView.image = image;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        nil;
+    }];
+}
 @end

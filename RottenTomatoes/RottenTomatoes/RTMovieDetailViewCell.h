@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTMovieObject.h"
 
 @interface RTMovieDetailViewCell : UITableViewCell
+
+@property (nonatomic, weak) RTMovieObject *movie;
 
 @end
