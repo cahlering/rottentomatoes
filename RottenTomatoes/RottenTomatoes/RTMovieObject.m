@@ -7,6 +7,7 @@
 //
 
 #import "RTMovieObject.h"
+#import "RTCastMember.h"
 
 @implementation RTMovieObject
 
@@ -19,5 +20,10 @@
                              };
     }
     return self;
+}
+
+- (Class)classForElementsInArrayProperty:(NSString *)abridged_cast
+{
+    return [RTCastMember class];
 }
 @end

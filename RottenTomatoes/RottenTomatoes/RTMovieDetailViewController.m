@@ -8,13 +8,15 @@
 
 #import "RTMovieDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "RTCastMember.h"
 
 @interface RTMovieDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *cast;
-@property (weak, nonatomic) IBOutlet UILabel *description;
-@property (weak, nonatomic) IBOutlet UIImageView *poster;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *castLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 @end
@@ -35,11 +37,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title.text = self.movie.title;
-    self.description.text = self.movie.description;
-    //self.cast.text = [[self.movie.cast objectAtIndex:0] string];
+    self.title = self.movie.title;
+    self.descriptionLabel.text = self.movie.description;
+    NSMutableString *castString = [[NSMutableString alloc]init];
+    for (RTCastMember *castMember in self.movie.cast) {
+        if (castString.length > 0) {
+            [castString appendString:@", "];
+        }
+        [castString appendString:castMember.name];
+    }
+    self.castLabel.text = [NSString stringWithString:castString];
     
-    [self.poster setImageWithURL:[NSURL URLWithString:[self.movie.posters valueForKey:@"detailed"]]];
+    [self.posterView setImageWithURL:[NSURL URLWithString:[self.movie.posters valueForKey:@"detailed"]]];
+    
+    self.scrollView.alpha = 0.85f;
     
 }
 

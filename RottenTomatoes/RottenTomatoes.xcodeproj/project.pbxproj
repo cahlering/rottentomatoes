@@ -28,6 +28,7 @@
 		95DDFE7218D8CE380023B9F3 /* RTMovieDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DDFE7018D8CE380023B9F3 /* RTMovieDetailViewCell.xib */; };
 		95DDFE7A18D8D90E0023B9F3 /* RTMovieResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DDFE7918D8D90E0023B9F3 /* RTMovieResponse.m */; };
 		95DDFE7C18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95DDFE7B18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib */; };
+		95DDFE7F18D9335A0023B9F3 /* RTCastMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DDFE7E18D9335A0023B9F3 /* RTCastMember.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		95DDFE7818D8D90E0023B9F3 /* RTMovieResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMovieResponse.h; sourceTree = "<group>"; };
 		95DDFE7918D8D90E0023B9F3 /* RTMovieResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMovieResponse.m; sourceTree = "<group>"; };
 		95DDFE7B18D8FCDE0023B9F3 /* RTMovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTMovieDetailViewController.xib; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		95DDFE7D18D9335A0023B9F3 /* RTCastMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCastMember.h; sourceTree = "<group>"; };
+		95DDFE7E18D9335A0023B9F3 /* RTCastMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCastMember.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 				95DDFE6618D8B5EA0023B9F3 /* RTMovieObject.m */,
 				95DDFE7818D8D90E0023B9F3 /* RTMovieResponse.h */,
 				95DDFE7918D8D90E0023B9F3 /* RTMovieResponse.m */,
+				95DDFE7D18D9335A0023B9F3 /* RTCastMember.h */,
+				95DDFE7E18D9335A0023B9F3 /* RTCastMember.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 			files = (
 				95B6380718D72F520090D9DD /* main.m in Sources */,
 				95DDFE6418D8A6DC0023B9F3 /* RTAppDelegate.m in Sources */,
+				95DDFE7F18D9335A0023B9F3 /* RTCastMember.m in Sources */,
 				95DDFE6018D89A520023B9F3 /* RTMovieListViewController.m in Sources */,
 				95DDFE6D18D8B6B80023B9F3 /* RTMovieDetailViewController.m in Sources */,
 				95DDFE7118D8CE380023B9F3 /* RTMovieDetailViewCell.m in Sources */,
